@@ -350,6 +350,5 @@ public class DbUtils {
 
     private static Connection getConnection() throws SQLException {
         return dataSource.getConnection();
-
     }
 }
