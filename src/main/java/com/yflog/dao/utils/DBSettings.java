@@ -25,10 +25,19 @@ public class DBSettings extends BaseSettings {
     public static final String DEFAULT_JDBC_PASS = "";
 
     public static final String JDBC_URL = "jdbc.url";
-    public static final String DEFAULT_JDBC_URL = "";
+    public static final String DEFAULT_JDBC_URL = "jdbc:mysql://localhost:3306?dumpQueriesOnException=true&amp;useUnicode=true&amp;characterEncoding=UTF-8";
 
     public static final String JDBC_DRIVER = "jdbc.driver";
     public static final String DEFAULT_JDBC_DRIVER = "com.mysql.jdbc.Driver";
+
+    public static final String JDBC_VALIDATION_QUERY = "jdbc.validation.query";
+    public static final String DEFAULT_JDBC_VALIDATION_QUERY = "/* ping */ SELECT 1";
+
+    public static final String JDBC_REMOVE_ABANDONED = "jdbc.remove.abandoned";
+    public static final boolean DEFAULT_JDBC_REMOVE_ABANDONED = true;
+
+    public static final String JDBC_LOG_ABANDONED = "jdbc.log.abandoned";
+    public static final boolean DEFAULT_JDBC_LOG_ABANDONED = true;
 
     // make it singleton
 
@@ -69,4 +78,17 @@ public class DBSettings extends BaseSettings {
     public String getJdbcDriver() {
         return getSetting(JDBC_DRIVER, DEFAULT_JDBC_DRIVER);
     }
+
+    public String getJdbcVerificationQuery() {
+        return getSetting(JDBC_VALIDATION_QUERY, DEFAULT_JDBC_VALIDATION_QUERY);
+    }
+
+    public boolean getJdbcRemoveAbandoned() {
+        return getSettingBoolean(JDBC_REMOVE_ABANDONED, DEFAULT_JDBC_REMOVE_ABANDONED);
+    }
+
+    public boolean getJdbcLogAbandoned() {
+        return getSettingBoolean(JDBC_LOG_ABANDONED, DEFAULT_JDBC_LOG_ABANDONED);
+    }
+
 }

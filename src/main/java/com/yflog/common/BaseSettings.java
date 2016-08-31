@@ -1,7 +1,6 @@
 package com.yflog.common;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -44,6 +43,15 @@ public abstract class BaseSettings {
         }
 
         return Integer.parseInt(_props.getProperty(key).trim());
+    }
+
+    public boolean getSettingBoolean (String key, boolean defVal) {
+        if (!_props.containsKey(key)) {
+            return defVal;
+        }
+
+        String val = getSetting(key);
+        return val.equalsIgnoreCase("true") || val.equalsIgnoreCase("y") || val.equalsIgnoreCase("1");
     }
 
 }
