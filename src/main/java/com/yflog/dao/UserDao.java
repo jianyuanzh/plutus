@@ -19,7 +19,7 @@ public class UserDao extends AbstractDao {
 
     public UserDao() {
         dbName = "plutus";
-        tbName = dbName + "users";
+        tbName = dbName + ".users";
         sqlSelect = "SELECT users.id," +
                         "users.username," +
                         "users.email," +
