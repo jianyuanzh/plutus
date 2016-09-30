@@ -35,13 +35,13 @@ public class UserDaoHbImpl extends UserDao {
 
     @Override
     public User getById(int id) {
-         return getHibernateTemplate().get(User.class, id);
+        return getHibernateTemplate().get(User.class, id);
     }
 
     @Override
     public User getByUsername(String name) {
         List<User> users = (List<User>) getHibernateTemplate().findByNamedParam("from User u where u.username=:name", "name", name);
-        if (users== null || users.isEmpty())
+        if (users == null || users.isEmpty())
             return null;
 
         return users.get(0);
@@ -50,7 +50,7 @@ public class UserDaoHbImpl extends UserDao {
     @Override
     public User getByEmail(String email) {
         List<User> users = (List<User>) getHibernateTemplate().findByNamedParam("from User u where u.email=:email", "email", email);
-        if (users== null || users.isEmpty())
+        if (users == null || users.isEmpty())
             return null;
 
         return users.get(0);
