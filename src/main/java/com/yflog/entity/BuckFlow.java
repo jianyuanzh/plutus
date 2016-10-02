@@ -11,6 +11,8 @@ public class BuckFlow {
     private int id;
     private int flowType;
     private long amount;
+    private long createEpoch;
+    private long latestUpdateEpoch;
     private Bucket fromBucket;
     private Bucket toBucket;
     private String desc;
@@ -46,8 +48,27 @@ public class BuckFlow {
         this.amount = amount;
     }
 
+    @Basic
+    @Column(name = "creatEpoch")
+    public long getCreateEpoch() {
+        return createEpoch;
+    }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    public void setCreateEpoch(long createEpoch) {
+        this.createEpoch = createEpoch;
+    }
+
+    @Basic
+    @Column(name = "latestUpdateEpoch")
+    public long getLatestUpdateEpoch() {
+        return latestUpdateEpoch;
+    }
+
+    public void setLatestUpdateEpoch(long updateEpoch) {
+        this.latestUpdateEpoch = updateEpoch;
+    }
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public Bucket getFromBucket() {
         return fromBucket;
     }
@@ -56,7 +77,7 @@ public class BuckFlow {
         this.fromBucket = fromBucket;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public Bucket getToBucket() {
         return toBucket;
     }
@@ -74,7 +95,7 @@ public class BuckFlow {
         this.desc = desc;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     public Role getRole() {
         return role;
     }

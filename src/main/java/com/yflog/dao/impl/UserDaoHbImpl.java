@@ -18,6 +18,11 @@ import java.util.List;
 public class UserDaoHbImpl extends UserDao {
 
     @Override
+    public List<User> loadAll() {
+        return getHibernateTemplate().loadAll(User.class);
+    }
+
+    @Override
     @Transactional
     public void save(User user) {
         getHibernateTemplate().save(user);

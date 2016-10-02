@@ -22,6 +22,11 @@ public class TagDaoHbImpl extends TagDao {
         return tags.get(0);
     }
 
+    @Override
+    public List<Tag> loadAll() {
+        return getHibernateTemplate().loadAll(Tag.class);
+    }
+
     @Transactional
     @Override
     public void save(Tag tag) {

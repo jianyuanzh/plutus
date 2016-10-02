@@ -4,6 +4,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by vincent on 9/28/16.
@@ -15,6 +16,7 @@ public abstract class AbstractHibernateDao<T> extends HibernateDaoSupport {
         super.setSessionFactory(sessionFactory);
     }
 
+    public abstract List<T> loadAll();
 
     public abstract void save(T o);
 

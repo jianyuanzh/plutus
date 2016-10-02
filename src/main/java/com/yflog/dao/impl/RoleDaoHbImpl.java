@@ -22,6 +22,11 @@ public class RoleDaoHbImpl extends RoleDao {
         return roles.get(0);
     }
 
+    @Override
+    public List<Role> loadAll() {
+        return getHibernateTemplate().loadAll(Role.class);
+    }
+
     @Transactional
     @Override
     public void save(Role o) {

@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Bucket {
     private int id;
     private String name;
+    private int type;
     private long balance; // in cent 1yuan = 100cent
     private String desc;
 
@@ -33,6 +34,16 @@ public class Bucket {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column (name = "type")
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     @Basic
@@ -63,6 +74,7 @@ public class Bucket {
         Bucket bucket = (Bucket) o;
 
         if (id != bucket.id) return false;
+        if (type != bucket.type) return false;
         if (balance != bucket.balance) return false;
         if (!name.equals(bucket.name)) return false;
         return desc != null ? desc.equals(bucket.desc) : bucket.desc == null;
@@ -73,6 +85,7 @@ public class Bucket {
     public int hashCode() {
         int result = id;
         result = 31 * result + name.hashCode();
+        result = 31 * result + type;
         result = 31 * result + (int) (balance ^ (balance >>> 32));
         result = 31 * result + (desc != null ? desc.hashCode() : 0);
         return result;
@@ -83,6 +96,7 @@ public class Bucket {
         return "Bucket{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", type=" + type +
                 ", balance=" + balance +
                 ", desc='" + desc + '\'' +
                 '}';

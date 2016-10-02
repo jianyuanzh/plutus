@@ -3,6 +3,7 @@ package com.yflog.dao.impl;
 import com.yflog.dao.BucketDao;
 import com.yflog.entity.Bucket;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,12 @@ public class BucketDaoHbImpl extends BucketDao {
         return buckets.get(0);
     }
 
+    @Override
+    public List<Bucket> loadAll() {
+        return getHibernateTemplate().loadAll(Bucket.class);
+    }
+
+    @Transactional
     @Override
     public void save(Bucket o) {
         getHibernateTemplate().save(o);
