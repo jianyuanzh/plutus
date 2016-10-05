@@ -2,9 +2,12 @@ package com.yflog;
 
 import com.yflog.entity.Tag;
 import com.yflog.entity.User;
+import com.yflog.entity.util.Type;
 import com.yflog.service.TagService;
 import com.yflog.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import static com.yflog.entity.util.Type.OUT;
 
 /**
  * Created by vincent on 9/28/16.
@@ -41,7 +44,7 @@ public class App {
 
         Tag tag = new Tag();
         tag.setName("test");
-        tag.setType(1);
+        tag.setType(OUT);
         tag.setDesc("This is a test");
 
         TagService tagService = (TagService) context.getBean("tagService");

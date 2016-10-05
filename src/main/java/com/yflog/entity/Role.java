@@ -1,5 +1,7 @@
 package com.yflog.entity;
 
+import com.yflog.server.pojo.RestRole;
+
 import javax.persistence.*;
 
 /**
@@ -55,6 +57,24 @@ public class Role {
         if (!roleName.equals(role.roleName)) return false;
         return description != null ? description.equals(role.description) : role.description == null;
 
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", roleName='" + roleName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    public RestRole toRestRole() {
+        RestRole restRole = new RestRole();
+        restRole.setRoleName(roleName);
+        restRole.setId(id);
+        restRole.setDescription(description);
+
+        return restRole;
     }
 
     @Override

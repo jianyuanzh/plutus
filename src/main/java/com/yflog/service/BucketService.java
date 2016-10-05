@@ -29,6 +29,10 @@ public class BucketService {
         return bucketDao.getById(id);
     }
 
+    public void updateBalance(Bucket bucket) {
+        bucketDao.updateBalance(bucket);
+    }
+
     public Bucket getByName(String name) {
         return bucketDao.getByName(name);
     }

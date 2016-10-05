@@ -33,11 +33,13 @@ public class RoleDaoHbImpl extends RoleDao {
         getHibernateTemplate().save(o);
     }
 
+    @Transactional
     @Override
     public void update(Role o) {
         getHibernateTemplate().update(o);
     }
 
+    @Transactional
     @Override
     public void delete(Role o) {
         getHibernateTemplate().delete(o);

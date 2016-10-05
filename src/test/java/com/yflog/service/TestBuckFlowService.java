@@ -3,6 +3,7 @@ package com.yflog.service;
 import com.yflog.entity.BuckFlow;
 import com.yflog.entity.Bucket;
 import com.yflog.entity.Role;
+import com.yflog.entity.util.Type;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -10,6 +11,8 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+
+import static com.yflog.entity.util.Type.OUT;
 
 /**
  * Created by vincent on 9/30/16.
@@ -43,11 +46,20 @@ public class TestBuckFlowService {
 
         Role role = saveRole();
 
+        role.setRoleName("changed");
 
-        BuckFlow buckFlow = saveBuckFlow(myBucket, expenseBucket, role);
+
+        Role rol2 = new Role();
+        rol2.setId(role.getId());
+
+
+        BuckFlow buckFlow = saveBuckFlow(myBucket, expenseBucket, rol2);
+
 
         // assert after save, the id is set by db
         Assert.assertTrue(buckFlow.getId() != 0);
+
+
 
         // query
         BuckFlow queried = bfService.getById(buckFlow.getId());
@@ -78,12 +90,10 @@ public class TestBuckFlowService {
 
     private BuckFlow saveBuckFlow(Bucket from, Bucket to, Role role) {
 
-
-
         BuckFlow buckFlow = new BuckFlow();
         buckFlow.setDesc("A buck flow for test");
         buckFlow.setAmount(50);
-        buckFlow.setFlowType(1);
+        buckFlow.setFlowType(OUT);
         buckFlow.setFromBucket(from);
         buckFlow.setToBucket(to);
         buckFlow.setLatestUpdateEpoch(System.currentTimeMillis());
@@ -112,7 +122,7 @@ public class TestBuckFlowService {
         BucketService bucketService = (BucketService) context.getBean("bucketService");
 
         Bucket bucket = new Bucket();
-        bucket.setName("Expense bucket");
+        bucket.setName("Expense bucket" + System.currentTimeMillis());
         bucket.setDesc("Expense bucket for test");
         bucket.setType(0);
         bucket.setBalance(0);
@@ -129,7 +139,7 @@ public class TestBuckFlowService {
         bucket.setDesc("For test");
         bucket.setBalance(balance);
         bucket.setType(type);
-        bucket.setName("credit card");
+        bucket.setName("credit card" + System.currentTimeMillis());
 
         bucketService.save(bucket);
 

@@ -1,5 +1,7 @@
 package com.yflog.entity;
 
+import com.yflog.entity.util.Type;
+
 import javax.persistence.*;
 
 /**
@@ -10,7 +12,7 @@ import javax.persistence.*;
 public class Tag {
     private int id;
     private String name;
-    private int type; // 0,
+    private int type;
     private String desc;
 
     @Id
@@ -44,8 +46,12 @@ public class Tag {
         return type;
     }
 
-    public void setType(int type) {
+    void setType(int type) {
         this.type = type;
+    }
+
+    public void setType(Type type) {
+        setType(type.getType());
     }
 
     @Basic

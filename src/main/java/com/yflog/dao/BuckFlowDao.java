@@ -16,4 +16,6 @@ public abstract class BuckFlowDao extends AbstractHibernateDao<BuckFlow> {
     public abstract List<BuckFlow> getFlowsByToBucket(Bucket toBucket);
 
     public abstract List<BuckFlow> loadAll(long from, long to);
+
+    public abstract int bulkUpdate(BuckFlow buckFlow);
 }

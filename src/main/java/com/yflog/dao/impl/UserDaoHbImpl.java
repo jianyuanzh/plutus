@@ -28,11 +28,13 @@ public class UserDaoHbImpl extends UserDao {
         getHibernateTemplate().save(user);
     }
 
+    @Transactional
     @Override
     public void update(User user) {
         getHibernateTemplate().update(user);
     }
 
+    @Transactional
     @Override
     public void delete(User user) {
         getHibernateTemplate().delete(user);

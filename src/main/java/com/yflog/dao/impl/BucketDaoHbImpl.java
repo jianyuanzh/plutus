@@ -21,6 +21,12 @@ public class BucketDaoHbImpl extends BucketDao {
         return buckets.get(0);
     }
 
+    @Transactional
+    @Override
+    public void updateBalance(Bucket bucket) {
+        getHibernateTemplate().bulkUpdate("update Bucket set balance=? where id=?", bucket.getBalance(), bucket.getId());
+    }
+
     @Override
     public List<Bucket> loadAll() {
         return getHibernateTemplate().loadAll(Bucket.class);
@@ -32,11 +38,13 @@ public class BucketDaoHbImpl extends BucketDao {
         getHibernateTemplate().save(o);
     }
 
+    @Transactional
     @Override
     public void update(Bucket o) {
         getHibernateTemplate().update(o);
     }
 
+    @Transactional
     @Override
     public void delete(Bucket o) {
         getHibernateTemplate().delete(o);
@@ -46,4 +54,6 @@ public class BucketDaoHbImpl extends BucketDao {
     public Bucket getById(int id) {
         return getHibernateTemplate().get(Bucket.class, id);
     }
+
+
 }

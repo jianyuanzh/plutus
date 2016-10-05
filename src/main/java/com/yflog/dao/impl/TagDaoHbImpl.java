@@ -33,11 +33,13 @@ public class TagDaoHbImpl extends TagDao {
         getHibernateTemplate().save(tag);
     }
 
+    @Transactional
     @Override
     public void update(Tag o) {
         getHibernateTemplate().update(o);
     }
 
+    @Transactional
     @Override
     public void delete(Tag o) {
         getHibernateTemplate().delete(o);

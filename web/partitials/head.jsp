@@ -9,8 +9,8 @@
     <div class="container-fluid container-nav">
         <!-- Navbar Action -->
         <ul class="nav navbar-nav navbar-actions navbar-left">
-            <li class="visible-md visible-lg"><a href="index.jsp#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
-            <li class="visible-xs visible-sm"><a href="index.jsp#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>
+            <li class="visible-md visible-lg"><a href="index2.jsp#" id="main-menu-toggle"><i class="fa fa-th-large"></i></a></li>
+            <li class="visible-xs visible-sm"><a href="index2.jsp#" id="sidebar-menu"><i class="fa fa-navicon"></i></a></li>
         </ul>
         <!-- Navbar Left -->
         <div class="navbar-left">

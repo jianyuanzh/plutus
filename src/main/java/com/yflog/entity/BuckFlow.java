@@ -1,5 +1,7 @@
 package com.yflog.entity;
 
+import com.yflog.entity.util.Type;
+
 import javax.persistence.*;
 
 /**
@@ -17,6 +19,7 @@ public class BuckFlow {
     private Bucket toBucket;
     private String desc;
     private Role role;
+    private Tag tag;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -35,8 +38,12 @@ public class BuckFlow {
         return flowType;
     }
 
-    public void setFlowType(int flowType) {
+    void setFlowType(int flowType) {
         this.flowType = flowType;
+    }
+
+    public void setFlowType(Type flowType) {
+        setFlowType(flowType.getType());
     }
 
     @Basic
@@ -102,6 +109,15 @@ public class BuckFlow {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 
     @Override
