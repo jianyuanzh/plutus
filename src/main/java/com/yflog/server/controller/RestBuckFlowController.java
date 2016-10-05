@@ -2,11 +2,14 @@ package com.yflog.server.controller;
 
 import com.yflog.common.ErrorCodes;
 import com.yflog.entity.BuckFlow;
+import com.yflog.entity.util.Type;
 import com.yflog.server.pojo.Response;
 import com.yflog.service.BuckFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by vincent on 10/3/16.
@@ -23,7 +26,7 @@ public class RestBuckFlowController {
     public Response addBuckFlow(@RequestBody BuckFlow buckFlow) {
         buckFlowService.save(buckFlow);
         Response response = new Response();
-        response.setData(buckFlow);
+        response.setData(buckFlowService.getById(buckFlow.getId()));
 
         return response;
     }
@@ -69,9 +72,46 @@ public class RestBuckFlowController {
         else {
             bf.setId(bfId);
             buckFlowService.update(bf);
-            response.setData(bf);
+            response.setData(buckFlowService.getById(bfId));
         }
 
         return response;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/all/{type}", method = RequestMethod.GET)
+    public Response viewAll(@PathVariable String type,
+                            @RequestParam(name = "from", defaultValue = "-1") long from,
+                            @RequestParam(value = "to", defaultValue = "-1") long to) {
+
+        Response response = new Response();
+        try {
+            Type tp = Type.valueOf(type.toUpperCase());
+            List<BuckFlow> flows =null;
+            if (from == -1 || to == -1) {
+                flows = buckFlowService.listAllFlows(tp);
+            }
+            else {
+                flows = buckFlowService.listAllFlows(tp, from, to);
+            }
+
+            response.setData(flows);
+
+            return response;
+        }
+        catch (Exception e) {
+            response.set(ErrorCodes.STATUS_REST_ARGUMENT_ERROR, String.format("%s: flowType invalid - %s",
+                    ErrorCodes.ERR_MSG_REST_ARGUMENT_ERROR, type));
+        }
+
+        return response;
+
+    }
+
+    public static void main(String[] args) {
+        for (Type type : Type.values()) {
+            System.out.println(type.toString());
+        }
+
     }
 }

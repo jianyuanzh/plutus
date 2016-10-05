@@ -75,4 +75,11 @@ public class RestUserController {
         return response;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public Response viewAll() {
+        Response response = new Response();
+        return response.setData(userService.loadAll());
+    }
+
 }

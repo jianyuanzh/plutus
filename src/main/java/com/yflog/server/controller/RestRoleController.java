@@ -84,4 +84,13 @@ public class RestRoleController {
         return new Response();
     }
 
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public Response viewAll() {
+        Response response = new Response();
+        response.setData(roleService.loadAll());
+
+        return response;
+    }
+
 }

@@ -10,6 +10,8 @@ public class ErrorCodes {
     public static final int STATUS_NO_REOCORD = 3000;
     public static final String ERR_MSG_NO_SUCH_RECORD = "No such record";
 
+    public static final int STATUS_REST_ARGUMENT_ERROR = 3001;
+    public static final String ERR_MSG_REST_ARGUMENT_ERROR = "Contains invalid argument";
 
 
     // common error codes

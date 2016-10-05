@@ -46,4 +46,8 @@ public class UserService {
     public User getByEmail(String email) {
         return userDao.getByEmail(email);
     }
+
+    public Object loadAll() {
+        return userDao.loadAll();
+    }
 }

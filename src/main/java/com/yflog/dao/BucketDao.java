@@ -2,6 +2,8 @@ package com.yflog.dao;
 
 import com.yflog.entity.Bucket;
 
+import java.util.List;
+
 /**
  * Created by vincent on 9/29/16.
  */

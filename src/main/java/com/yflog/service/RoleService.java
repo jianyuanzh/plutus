@@ -33,4 +33,8 @@ public class RoleService {
     public Role getRoleByName(String name) {
         return roleDao.getByName(name);
     }
+
+    public Object loadAll() {
+        return roleDao.loadAll();
+    }
 }

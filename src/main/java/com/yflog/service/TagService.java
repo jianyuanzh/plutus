@@ -41,5 +41,9 @@ public class TagService {
     public Tag getByName(String name) {
         return tagDao.getByName(name);
     }
+
+    public Object loadAll() {
+        return tagDao.loadAll();
+    }
 }
 

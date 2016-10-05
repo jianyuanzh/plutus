@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.yflog.common.ErrorCodes.ERR_MSG_NO_SUCH_RECORD;
 import static com.yflog.common.ErrorCodes.STATUS_NO_REOCORD;
 
@@ -77,6 +79,16 @@ public class RestBucketController {
         else {
             response.set(STATUS_NO_REOCORD, ERR_MSG_NO_SUCH_RECORD);
         }
+
+        return response;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public Response viewAll() {
+        List<Bucket> buckets = bucketService.loadAll();
+        Response response = new Response();
+        response.setData(buckets);
 
         return response;
     }

@@ -77,4 +77,13 @@ public class RestTagController {
         return response;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public Response viewAll() {
+        Response response = new Response();
+        response.setData(tagService.loadAll());
+
+        return response;
+    }
+
 }

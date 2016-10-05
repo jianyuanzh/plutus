@@ -5,6 +5,8 @@ import com.yflog.entity.Bucket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by vincent on 9/29/16.
  */
@@ -35,5 +37,9 @@ public class BucketService {
 
     public Bucket getByName(String name) {
         return bucketDao.getByName(name);
+    }
+
+    public List<Bucket> loadAll() {
+        return bucketDao.loadAll();
     }
 }
